@@ -27,5 +27,8 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 14400 -e REPO_USER=${REPO_USER} -e REPO_PASS:${REPO_PASS}
+    environment: 
+      - REPO_USER=${REPO_USER}
+      - REPO_PASS:${REPO_PASS}
+    command: --interval 30
   
