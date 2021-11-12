@@ -6,19 +6,26 @@ networks:
 
 services:
 
-  frontend-service:
-    image: jnhck/frontend_cont:latest
+  frontend-microservice:
+    image: ghcr.io/studienprojekt-sdp/frontend:latest
     ports:
       - "3000:3000"
     networks:
       - microservice-network
 
   time-microservice:
-    image: jnhck/time_microservice_webapi:latest
+    image: ghcr.io/studienprojekt-sdp/timeservice:latest
     networks: 
       - microservice-network
 
   weather-microservice:
-    image: jnhck/weather_microservice_webapi:latest
+    image: ghcr.io/studienprojekt-sdp/weatherservice:latest
     networks:
       - microservice-network
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 14400 -e REPO_USER=${REPO_USER} -e REPO_PASS:${REPO_PASS}
+  
