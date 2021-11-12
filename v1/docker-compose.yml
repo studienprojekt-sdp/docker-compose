@@ -32,5 +32,5 @@ services:
     environment: 
       - REPO_USER=${REPO_USER}
       - REPO_PASS=${REPO_PASS}
-    command: --interval 30
+    command: --interval ${UPDATE_INTERVAL}
   
