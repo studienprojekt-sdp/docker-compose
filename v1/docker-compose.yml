@@ -27,8 +27,10 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
     environment: 
       - REPO_USER=${REPO_USER}
-      - REPO_PASS:${REPO_PASS}
+      - REPO_PASS=${REPO_PASS}
     command: --interval 30
   
